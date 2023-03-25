@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{%block icerik%}
+{{user}}
+
+<div class="row">
+    <div class="col-lg-11 pull-center" style="border:1px solid;margin:50px" >
+        <div class="text-center">
+            <img width="150" style="margin:auto" class="img-responsive img-circle" src="{{user.userprofile.get_profile_photo}}">
+       </br>
+        {%if user.userprofile.user_full_name%}
+    <span><b>İsim Soyisim: {{user.userprofile.user_full_name|upper}} </b></span>
+    {%endif%}
+            <div class="text"></div>
+            <span>Kullanıcı adı: @{{user.username}}</span><br>
+            <span>Cinsiyet: {{user.userprofile.get_sex_display}}</span>
+</div>
+</div>
+</div>
+{%if request.user == user %}
+    {%include 'auth/include/owner_navbar.html'%}
+{%else%}
+    {%include 'auth/include/visitor_navbar.html'%}
+{%endif%}
+<div>
+    {% block profil_içerik%}
+
+    {%endblock%}
+</div>
+{%endblock%}

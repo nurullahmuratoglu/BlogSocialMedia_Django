@@ -1,0 +1,5 @@
+<ul class="nav nav-pills">
+  {% include 'auth/include/both_navbar_fields.html'%}
+  <li class="{%if page == 'settings' %}active{% endif %}"><a href="{%url 'usersetting'%}">Ayarlar</a></li>
+  <li class="{%if page == 'passchange' %}active{% endif %}"><a href="{%url 'passchange'%}">şifre değiştir</a></li>
+</ul>

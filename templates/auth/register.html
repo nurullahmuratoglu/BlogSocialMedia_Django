@@ -1,0 +1,40 @@
+{% extends 'base_is_anonymous.html' %}
+
+
+{%block icerik%}
+<div class="row">
+    <div class="col-lg-6 pull-center">
+
+    <form method="post" action="{% url 'register'%}">
+        {% csrf_token %}
+     {%for field in form %}
+        <div class="form-group">
+        <div class="row">
+            <div class="col-lg-9">
+
+                    <label class="control-label">{{field.label}}</label>
+                        {{field}}
+                                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <span class="text-danger"><b>{{ error }}</b></span>
+                                    {% endfor %}
+                                {% else %}
+                                    {% if field.help_text %}
+                                        <span class="text-success"><b>{{ field.help_text }}</b></span>
+                                    {% endif %}
+                                {% endif %}
+                </label>
+            </div>
+            <div class="col-lg-9">
+
+        </div>
+        </div>
+        </div>
+        {%endfor%}
+            <input type="submit" value="Kayıt Ol" class=" pull-center btn   btn-sm btn-success">
+            <span><b> Daha önce kayıt olduysanız sisteme giriş yapmak için <a href="{%url 'userlogin'%}"> tıklanıyız </a> </b></span>
+    </form>
+</div>
+    </div>
+{%endblock%}
+

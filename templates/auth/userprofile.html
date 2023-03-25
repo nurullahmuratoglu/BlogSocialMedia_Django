@@ -1,0 +1,37 @@
+{% extends 'auth/user_profile.html' %}
+{% load static %}
+
+<div style="margin:0 auto;width: 1000px;background-color:#FFFFFF;margin-top:100px;height:170px;" >
+    <div style="float:left">
+    <img height="170" width="120" src="{{ post.resim.url }}" >
+      </div>
+  <small class="glyphicon glyphicon-time pull-right">{{post.created_date}}</small>
+    <h3 style="margin-top: 30px;" align="center"><a style="color:black;" href="{% url 'post_details' post.id %}"> {{post.title}}</a></h3>
+
+
+  <span><b>{{ post.icerik|safe|truncatewords:30 }}<a href="{% url 'post_details' post.id %}"> devamını okumak için tıklayınız</a></b></span>
+  <span style="margin-top: 50px;margin-right: 20px;"  class="pull-right glyphicon glyphicon-user"><b>yazar: </b><a href="{%url 'userprofile' post.user.username%}">{{post.user.username}}</a></span></p>
+
+</div>
+
+
+{% block profil_içerik %}
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-lg-12">
+            {% for post in user.blog.all %}
+<div style="margin:0 auto;width: 1000px;background-color:#FFFFFF;margin-top:100px;height:170px;" >
+    <div style="float:left">
+    <img height="170" width="120" src="{{ post.resim.url }}" >
+      </div>
+  <small class="glyphicon glyphicon-time pull-right">{{post.created_date}}</small>
+    <h3 style="margin-top: 30px;" align="center"><a style="color:black;" href="{% url 'post_details' post.id %}"> {{post.title|upper}}</a></h3>
+
+
+  <span><b>{{ post.icerik|safe|truncatewords:30 }}<a href="{% url 'post_details' post.id %}"> devamını okumak için tıklayınız</a></b></span>
+  <span style="margin-top: 50px;margin-right: 20px;"  class="pull-right glyphicon glyphicon-user"><b>yazar: </b><a href="{%url 'userprofile' post.user.username%}">{{post.user.username}}</a></span></p>
+
+</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

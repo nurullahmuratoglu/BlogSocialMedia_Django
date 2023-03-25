@@ -1,0 +1,8 @@
+{% extends 'auth/user_profile.html' %}
+
+{%block profil_içerik%}
+    <div style="margin-top:50px;;text-align:center" class="">
+        {{user.userprofile.bio|linebreaksbr}}
+    </div>
+
+{%endblock%}

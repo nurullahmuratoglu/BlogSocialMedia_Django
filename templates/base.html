@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blogger</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <link rel="stylesheet" type="text/css" href="{%static 'bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{%static 'bootstrap/css/bootstrap-theme.min.css'%}">
+    <script type="text/javascript" rel="script" src="{%static 'bootstrap/js/jquery-3.3.1.min.js'%}"></script>
+    <script type="text/javascript" rel="script" src="{%static 'bootstrap/js/bootstrap.min.js'%}"></script>
+  {% block ust_icerik %}
+
+  {% endblock %}
+<style type="text/css">
+.pull-center{
+    float: none;
+    margin:0 auto;
+}
+
+	</style>
+</head>
+<body  style="background-color:#f8f8ff;">
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'post_list' %}">Blogger</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class=""><a href="{% url 'post_list' %}">Anasayfa <span class="sr-only">(current)</span></a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="{% url 'post_create' %}"><span class="glyphicon glyphicon-plus"></span>Post oluştur</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{request.user.userprofile.get_screen_name|upper}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="{%url 'userprofile' request.user.username%}"><span class="glyphicon glyphicon-user">Profil</span></a></li>
+            <li><a href="{%url 'usersetting'%}"><span class="glyphicon glyphicon-cog">Ayarlar</span></a></li>
+            <li><a href="{%url 'passchange'%}"><span class="glyphicon glyphicon-lock">Password Change</span></a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{%url 'userlogout'%}">çıkış yap </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% block icerik %}
+{% endblock %}
+
+</body>
+</html>
